@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.msz.dao.SysCityMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.msz.model.SysCity">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="province" property="province"/>
+        <result column="city" property="city"/>
+        <result column="district" property="district"/>
+        <result column="town" property="town"/>
+        <result column="parent" property="parent"/>
+        <result column="level" property="level"/>
+        <result column="lng" property="lng"/>
+        <result column="lat" property="lat"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, province, city, district, town, parent, level, lng, lat
+    </sql>
+
+
+	<select id="getCityList" resultType="com.msz.model.SysCity" parameterType="com.msz.model.SysCity">
+		select <include refid="Base_Column_List"/> from sys_city
+		where province = '广东' and `level` =2 ORDER BY parent ASC
+	</select>
+</mapper>
